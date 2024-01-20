@@ -1,8 +1,6 @@
 <template>
   <div class="relative w-100 min-h-screen">
-
-
-    <div ref="map" class="min-h-screen w-2-3 bg-gray-100" :style="{
+    <div ref="map" class="min-h-96 md:min-h-screen w-100 bg-gray-100" :style="{
       pointerEvents: scrollUp ? 'none' : 'auto',
       cursor: scrollUp ? 'grab' : 'auto',
     }">
@@ -11,19 +9,20 @@
 
     <!-- make a floating sidebar that sits on the left of the screen -->
     <div ref="sidebar" id="sidebar"
-      class="w-1/3 h-screen  fixed top-0 left-0 z-10 overflow-y-auto bg-neutral-900/20 backdrop-blur-sm">
+      class="h-96 md:w-1/3 md:h-screen fixed bottom-0 md:top-0 left-0 z-10 overflow-y-auto bg-neutral-900/20 backdrop-blur-sm">
       <div class="p-4">
 
 
-        <div ref="minimap" class=" w-100 h-96 bg-gray-100 rounded-lg shadow-lg"></div>
+        <div ref="minimap" class="hidden md:visible md:w-100 md:h-96 bg-gray-100 rounded-lg shadow-lg"></div>
 
         <h1 class="text-2xl font-bold">Hudson Valley</h1>
         <p class="text-gray-500">A map of the Hudson Valley</p>
 
         <!-- get the zoom, and lat/lng of the center of the map -->
-
-        {{ libreMap?.getZoom() }}
-        {{ libreMap?.getCenter() }}
+        <div v-if="libreMap">
+          {{ libreMap?.getZoom() }}
+          {{ libreMap?.getCenter() }}
+        </div>
 
         <UCheckbox v-model="scrollUp" label="Scroll north" color="purple" class="my-4" />
 
