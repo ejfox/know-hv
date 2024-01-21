@@ -44,6 +44,7 @@
 </template>
 
 <script setup>
+import { animate, createAnimatable, stagger } from '~/anime.esm.min.js'
 import { Map, Marker } from 'maplibre-gl';
 // @import '~maplibre-gl/dist/maplibre-gl.css';
 import 'maplibre-gl/dist/maplibre-gl.css';

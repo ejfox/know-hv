@@ -12,7 +12,10 @@ Review:
 
 Alright, listen up, this place? It's amazing. Seriously, it's just so great. You walk in, and you're like, "Wow, this is great." And then you keep walking, and it's still great. It doesn't stop being great. It's just great all the time. 
 
+![Great](https://source.unsplash.com/800x600/?great)
+
 You look around, and everywhere you look, it's great. To the left? Great. To the right? Also great. Up in the sky? Great. Down on the ground? Great. Everything, everywhere, all the time, is just great.
+
 
 And the feeling you get when you're there? Great. It's like, you think you know what great is, but then you come here, and it's even greater. You're walking, and you're thinking, "Is it possible for something to be this great?" And the answer is yes. Yes, it can be this great.
 
