@@ -1,22 +1,26 @@
 <template>
-  <div class="relative w-100 min-h-screen">
-    <div ref="map" class="min-h-96 md:min-h-screen w-100 bg-gray-100" :style="{
+  <div class="md:relative w-100 md:min-h-screen">
+
+    <div ref="map" class="min-h-screen w-100 bg-gray-100" :style="{
       pointerEvents: scrollUp ? 'none' : 'auto',
       cursor: scrollUp ? 'grab' : 'auto',
     }">
-
     </div>
 
     <!-- make a floating sidebar that sits on the left of the screen -->
     <div ref="sidebar" id="sidebar"
-      class="h-96 md:w-1/3 md:h-screen fixed bottom-0 md:top-0 left-0 z-10 overflow-y-auto bg-neutral-900/20 backdrop-blur-sm">
-      <div class="p-4">
+      class="block w-full md:w-2/5 lg:w-1/3 lg:h-screen fixed bottom-0 md:top-0 left-0 z-10 overflow-y-auto bg-neutral-900/50 backdrop-blur-lg max-h-96 md:max-h-screen">
+      <WeatherWidget />
+
+      <div class="md:p-4">
 
 
         <div ref="minimap" class="hidden md:visible md:w-100 md:h-96 bg-gray-100 rounded-lg shadow-lg"></div>
 
-        <h1 class="text-2xl font-bold">Hudson Valley</h1>
-        <p class="text-gray-500">A map of the Hudson Valley</p>
+        <h1 class="leading-loose tracking-widest font-light text-lg md:text-4xl p-2 md:py-4 text-gray-100 text-center">
+          Know
+          Hudson Valley
+        </h1>
 
         <!-- get the zoom, and lat/lng of the center of the map -->
         <div v-if="libreMap">
@@ -24,16 +28,19 @@
           {{ libreMap?.getCenter() }}
         </div>
 
-        <UCheckbox v-model="scrollUp" label="Scroll north" color="purple" class="my-4" />
+        <!-- <UCheckbox v-model="scrollUp" label="Scroll north" color="purple" class="my-4" /> -->
 
-        <UCard v-for="place in data" class="text-white mb-4">
+        <UCard v-for="(place, i) in places" class="text-white mb-4">
           <template #header>
-            {{ place.title }}
-
-            <UButton @click="libreMap.flyTo({ center: [place.longitude, place.latitude], zoom: 14 })" color="purple"
-              class="ml-2" label="Go" />
+            <span class="text-4xl">{{ place.title }}</span>
           </template>
-          <div class="prose dark:prose-invert">
+          <!-- add toggle for description -->
+          <UButton @click="place.show = !place.show" color="purple" variant="solid" class="" label="Show" />
+
+          <UButton @click="libreMap.flyTo({ center: [place.longitude, place.latitude], zoom: 14 })" color="purple"
+            variant="outline" class="ml-2" label="Go" />
+
+          <div class="prose dark:prose-invert p-2 lg:pr-8" v-show="place.show">
             <ContentRenderer :value="place" />
           </div>
           <!-- <pre>{{ place }}</pre> -->
@@ -55,6 +62,9 @@ import * as turf from '@turf/turf';
 // query all of the locations 
 const { data } = await useAsyncData('content', () => queryContent().find())
 
+// store the hide/show of the various places in the data
+const places = ref(data.value.map((place) => ({ ...place, show: false })));
+
 import { useColorMode } from '@vueuse/core';
 
 const colorMode = useColorMode()
@@ -67,8 +77,8 @@ const scrollUp = ref(false)
 onMounted(() => {
   libreMap.value = new Map({
     container: map.value,
-    // style: 'https://api.maptiler.com/maps/outdoor-v2/style.json?key=9risEBlLsABm8DwIZLKG',
-    style: colorMode === 'light' ? 'https://api.maptiler.com/maps/outdoor-v2/style.json?key=9risEBlLsABm8DwIZLKG' : 'https://api.maptiler.com/maps/toner-v2/style.json?key=9risEBlLsABm8DwIZLKG',
+    style: 'https://api.maptiler.com/maps/outdoor-v2/style.json?key=9risEBlLsABm8DwIZLKG',
+    // style: colorMode === 'light' ? 'https://api.maptiler.com/maps/outdoor-v2/style.json?key=9risEBlLsABm8DwIZLKG' : 'https://api.maptiler.com/maps/toner-v2/style.json?key=9risEBlLsABm8DwIZLKG',
     center: [-74, 41],
     zoom: 12,
     maxZoom: 16,
