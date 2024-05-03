@@ -5,4 +5,8 @@ author: EJ Fox
 longitude: 
 latitude: 
 ---
-The best
+
+<img class="w-full h-auto inline-block" src="/handdrawn__Beacon.svg"/>
+
+![](/handdrawn__Beacon.svg)
+The bestest ever

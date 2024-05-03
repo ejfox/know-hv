@@ -2,6 +2,10 @@
   <div class="p-24 prose dark:prose-invert">
     <h1>Adventure Builder</h1>
 
+    <img @click="place.show = !place.show" src="/handdrawn__PlanYourAdventure.svg"
+      class="w-full h-auto inline-block px-4 dark:invert" />
+
+
     <div class="fixed top-4 right-4 z-50 pr-4">
       <UVerticalNavigation :links="navigation" />
     </div>
@@ -41,7 +45,7 @@
 
         <!-- label -->
         <span class="text-gray-100 bg-gray-900 dark:text-gray-900 dark:bg-gray-100 px-2 rounded-lg">{{
-          animatedState.timeBudget.toFixed(0) }}
+      animatedState.timeBudget.toFixed(0) }}
           hours</span>
 
 
@@ -81,7 +85,8 @@
       <div class="">
         <h2>Itinerary Generation</h2>
         <UButton @click="generateItinerary" :disabled="!isFormValid" variant="solid" size="xl"
-          icon="i-ic-baseline-recommend">Generate Itinerary
+          icon="i-ic-baseline-recommend">
+          Generate Itinerary
         </UButton>
       </div>
     </div>

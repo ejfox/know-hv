@@ -9,18 +9,17 @@
 
     <!-- make a floating sidebar that sits on the left of the screen -->
     <div ref="sidebar" id="sidebar"
-      class="block w-full md:w-2/5 lg:w-1/3 lg:h-screen fixed bottom-0 md:top-0 left-0 z-10 overflow-y-auto bg-neutral-900/50 backdrop-blur-lg max-h-96 md:max-h-screen">
-      <WeatherWidget />
+      class="block w-full md:w-2/5 lg:w-1/3 lg:h-screen fixed bottom-0 md:top-0 left-0 z-10 overflow-y-auto dark:bg-neutral-900/50 bg-neutral-100/50 backdrop-blur-sm max-h-96 md:max-h-screen">
+
 
       <div class="md:p-4">
-
-
         <div ref="minimap" class="hidden md:visible md:w-100 md:h-96 bg-gray-100 rounded-lg shadow-lg"></div>
 
         <h1 class="leading-loose tracking-widest font-light text-lg md:text-4xl p-2 md:py-4 text-gray-100 text-center">
-          Know
-          Hudson Valley
+          <img src="/handdrawn__KnowHV3.svg" class="w-full h-auto dark:invert p-4 lg:p-8" />
         </h1>
+
+        <WeatherWidget />
 
         <!-- get the zoom, and lat/lng of the center of the map -->
         <div v-if="libreMap">
@@ -30,17 +29,23 @@
 
         <!-- <UCheckbox v-model="scrollUp" label="Scroll north" color="purple" class="my-4" /> -->
 
-        <UCard v-for="(place, i) in places" class="text-white mb-4">
+        <UCard v-for="(place, i) in places" class="dark:text-white mb-4">
           <template #header>
-            <span class="text-4xl">{{ place.title }}</span>
+            <span class="text-3xl uppercase">{{ place.title }}</span>
           </template>
           <!-- add toggle for description -->
-          <UButton @click="place.show = !place.show" color="purple" variant="solid" class="" label="Show" />
+          <!-- <UButton @click="place.show = !place.show" color="purple" variant="solid" class="" label="Show" /> -->
 
-          <UButton @click="libreMap.flyTo({ center: [place.longitude, place.latitude], zoom: 14 })" color="purple"
-            variant="outline" class="ml-2" label="Go" />
+          <img @click="place.show = !place.show" src="/handdrawn__Show.svg"
+            class="w-1/2 h-auto dark:invert inline-block px-4" />
 
-          <div class="prose dark:prose-invert p-2 lg:pr-8" v-show="place.show">
+          <!-- <UButton @click="libreMap.flyTo({ center: [place.longitude, place.latitude], zoom: 14 })" color="purple"
+            variant="outline" class="ml-2" label="Go" /> -->
+
+          <img @click="libreMap.flyTo({ center: [place.longitude, place.latitude], zoom: 14 })" src="/handdrawn__Go.svg"
+            class="w-1/2 h-auto dark:invert inline-block px-4" />
+
+          <div class="prose dark:prose-invert p-2 text-xl tracking-wide" v-show="place.show">
             <ContentRenderer :value="place" />
           </div>
           <!-- <pre>{{ place }}</pre> -->
@@ -83,10 +88,10 @@ onMounted(() => {
     zoom: 12,
     maxZoom: 16,
     minZoom: 8,
-    maxBounds: [
-      [-74.5, 41.2],
-      [-73.3, 42.2],
-    ],
+    // maxBounds: [
+    //   [-74.5, 41.2],
+    //   [-73.3, 42.2],
+    // ],
   });
 
   // now we need to make the bounds source for the minimap

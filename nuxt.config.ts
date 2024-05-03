@@ -25,7 +25,7 @@ export default defineNuxtConfig({
       '@nuxtjs/google-fonts',
       {
         families: {
-          Figtree: [400, 700]
+          'Delicious Handrawn': [400]
         }
       }
     ]
