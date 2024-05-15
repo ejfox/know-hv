@@ -12,6 +12,8 @@ Review:
 
 For those who yearn for a ride that combines natural beauty with an exhilarating road, Seven Lakes Drive leading to Bear Mountain State Park is a biker's paradise. This journey is not just about reaching a destination; it's an immersive experience in nature's artistry.
 
+<!--more-->
+
 ![Lakes and Mountains](https://source.unsplash.com/800x600/?motorcycle,lake)
 
 As you throttle up Seven Lakes Drive, you're greeted with a road that twists and turns, following the contours of the land like a river of asphalt. Each bend reveals a new, breathtaking view – serene lakes reflecting the sky, dense forests that whisper tales of the wild, and hills rolling into the distance.

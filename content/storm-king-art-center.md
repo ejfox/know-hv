@@ -12,6 +12,8 @@ Review:
 
 Riding to Storm King Art Center is not just a journey; it's an escape into a world where art and nature exist in perfect harmony. Nestled in the Hudson Valley, this 500-acre outdoor museum is a haven for those who appreciate the finer things in life.
 
+<!--more-->
+
 ![Artistic Journey](https://source.unsplash.com/800x600/?motorcycle,sculpture)
 
 As you approach Storm King on your motorcycle, you're greeted by the sight of colossal sculptures set against the backdrop of rolling hills and open skies. The road to the art center winds through scenic landscapes, making the ride itself an integral part of the experience.

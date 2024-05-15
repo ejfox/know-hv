@@ -12,6 +12,8 @@ Review:
 
 Perkins Memorial Drive, winding its way to the summit of Bear Mountain, is a road that promises an unparalleled journey to the skies. This drive is not just about reaching a destination; it's about the exhilarating experience of ascending towards one of the most breathtaking views in the Hudson Valley.
 
+<!--more-->
+
 ![Mountain Drive](https://source.unsplash.com/800x600/?mountain,road)
 
 As you begin your ascent on Perkins Memorial Drive, each turn unveils a new layer of the surrounding landscape. The road, expertly carved into the mountainside, offers a thrilling drive with sweeping curves and gentle inclines that are a joy for any motorist or cyclist.

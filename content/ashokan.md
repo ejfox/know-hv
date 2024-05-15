@@ -12,6 +12,8 @@ Review:
 
 A motorcycle trip around the Ashokan Reservoir is a journey through some of the most serene and picturesque landscapes in the Hudson Valley. This reservoir, nestled in the Catskill Mountains, offers a ride that is both tranquil and visually stunning.
 
+<!--more-->
+
 ![Mountain Ride](https://source.unsplash.com/800x600/?motorcycle,mountain)
 
 As you begin your ride around the reservoir, the road unfolds in a gentle embrace of the surrounding nature. The Ashokan Reservoir, with its vast expanse of shimmering water, is a sight to behold. The water's surface mirrors the sky, creating a sense of infinity between sky and land.

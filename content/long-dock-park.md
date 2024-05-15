@@ -12,6 +12,8 @@ Review:
 
 Long Dock Park in Beacon, NY, is not just a park; it's a rebirth of history and nature intertwined beautifully along the Hudson River's banks. This 19-acre gem is a transformed space where industrial history meets natural beauty.
 
+<!--more-->
+
 ![Riverside Beauty](https://source.unsplash.com/800x600/?park,river)
 
 Imagine strolling through a space where every step takes you deeper into a blend of art, ecology, and history. The park, once a bustling industrial train yard, has been given new life, emerging as a haven for relaxation and outdoor activities.

@@ -12,6 +12,8 @@ Review:
 
 Waryas Park in Poughkeepsie offers a delightful escape where the beauty of the Hudson River takes center stage. This waterfront park, with its stunning views of the Mid-Hudson Bridge and the river, is a gem that captivates both the eye and the spirit.
 
+<!--more-->
+
 ![Riverfront Serenity](https://source.unsplash.com/800x600/?park,river)
 
 Arriving at Waryas Park, you're immediately struck by the panoramic vistas. The sprawling Hudson River, with boats gliding gracefully, sets a scene of peaceful tranquility. The Mid-Hudson Bridge, an architectural marvel, stretches across the river, creating a picturesque backdrop that's simply breathtaking.

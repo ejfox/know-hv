@@ -25,7 +25,8 @@ export default defineNuxtConfig({
       '@nuxtjs/google-fonts',
       {
         families: {
-          'Delicious Handrawn': [400]
+          'Delicious Handrawn': [400],
+          Gelasio: [400, 500, 600, 700]
         }
       }
     ]

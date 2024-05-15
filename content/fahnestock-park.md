@@ -12,6 +12,8 @@ Review:
 
 Fahnestock State Park, a sprawling 14,000-acre sanctuary in the Hudson Valley, offers a motorcycle ride that's as refreshing as it is picturesque. This isn't just a ride; it's a journey through a mosaic of nature's finest work.
 
+<!--more-->
+
 ![Forest Ride](https://source.unsplash.com/800x600/?motorcycle,forest)
 
 Your ride through Fahnestock State Park is a feast for the senses. The park's lush forests envelop you in a blanket of green, the scent of pine and earth mingling with the crisp air. As you navigate the winding roads, each turn presents a new vista, a fresh perspective of the park's diverse landscapes.

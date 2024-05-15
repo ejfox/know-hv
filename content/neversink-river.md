@@ -12,6 +12,8 @@ Review:
 
 The hike to the Neversink River is an enchanting journey through one of the most serene and picturesque parts of the Hudson Valley. Known for its crystal-clear waters and lush surroundings, the Neversink River trail offers a perfect blend of natural beauty and peaceful exploration.
 
+<!--more-->
+
 ![Forest Path](https://source.unsplash.com/800x600/?forest,path)
 
 As you embark on this hike, the trail welcomes you with a canopy of trees that form a green tunnel, their leaves whispering stories of the forest. The path, well-trodden and inviting, weaves through the vibrant woodlands, guiding you towards the river's tranquil embrace.
