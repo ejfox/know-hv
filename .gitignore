@@ -26,3 +26,6 @@ logs
 .netlify
 
 settings.json
+
+*.pmtiles
+**/*.pmtiles

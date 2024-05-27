@@ -12,6 +12,8 @@ Review:
 
 A ride to the Newburgh Waterfront is a journey that blends historical charm with modern vibrancy. Situated along the picturesque Hudson River, this waterfront district is a treasure trove of culinary delights, scenic views, and a lively atmosphere.
 
+<!--more-->
+
 ![Riverside Charm](https://source.unsplash.com/800x600/?motorcycle,waterfront)
 
 As you cruise into Newburgh, the transition from open roads to urban streets is a sensory experience. The waterfront, with its mix of historic architecture and contemporary flair, presents a striking contrast against the serene backdrop of the Hudson River.

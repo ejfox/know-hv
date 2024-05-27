@@ -1,8 +1,8 @@
 <template>
-  <div class="p-24 prose dark:prose-invert">
+  <div class="p-24 prose dark:prose-invert text-3xl">
     <h1>Adventure Builder</h1>
 
-    <img @click="place.show = !place.show" src="/handdrawn__PlanYourAdventure.svg"
+    <img @click="place.show = !place.show" src="/svg/handdrawn__PlanYourAdventure.svg"
       class="w-full h-auto inline-block px-4 dark:invert" />
 
 
@@ -95,7 +95,7 @@
 
 <script setup>
 
-import { animate, createAnimatable, stagger } from '~/anime.esm.min.js'
+import { animate, createAnimatable, stagger } from '~/anime.esm.js'
 // const transportationOptions = ["Driving", "Motorcycle", "Bicycling", "Hiking"];
 const transportationOptions = [{
   id: 'driving',

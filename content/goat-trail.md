@@ -12,6 +12,8 @@ Review:
 
 If you're looking for a thrilling motorcycle ride with breathtaking views, the Goat Trail near the Bear Mountain Bridge is your spot. This is more than just a road; it's an experience.
 
+<!--more-->
+
 ![Scenic Ride](https://source.unsplash.com/800x600/?motorcycle,scenic)
 
 As you rev up your engine and embark on this journey, each twist and turn brings a new, stunning vista. It's like nature's own roller coaster, winding through the lush landscape of the Hudson Valley. The road is a perfect blend of challenge and beauty, making every moment on the bike feel like an adventure.

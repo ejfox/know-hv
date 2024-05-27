@@ -44,37 +44,58 @@
   "apparentTemperatureMaxTime": 1707645600
 } -->
 
-    <div class="flex flex-col items-start">
-      <div class="">{{ new Date(weatherData.time * 1000).toLocaleDateString() }}</div>
-      <div class="">{{ weatherData.summary }}</div>
-      <div class="">
-        <UIcon name="i-heroicons-arrow-up" />
-        {{ toFahrenheit(weatherData.temperatureHigh) }}°
-      </div>
-      <div class="">
-        <UIcon name="i-heroicons-arrow-down" />
-        {{ toFahrenheit(weatherData.temperatureLow) }}°
-      </div>
+    <div>
+      <div class="flex flex-col items-start space-y-2 p-2 font-mono">
+        <div class="uppercase">
+          <div v-if="isToday" class="text-lg font-bold">Today</div>
+          <div v-else-if="isTomorrow" class="text-lg font-bold">Tomorrow</div>
 
-      <div v-if="+weatherData.windSpeed > 10">
-        <UIcon name="i-wi-strong-wind" />
-        {{ weatherData.windSpeed }} mph
-      </div>
+          <div v-else class="text-lg">{{ new Date(weatherData.time * 1000).toLocaleDateString() }}</div>
+        </div>
 
-      <div v-if="+weatherData.precipProbability > 0">
-        <UIcon name="i-heroicons-cloud" />
-        {{ weatherData.precipProbability * 100 }}%
+        <div class="text-xl">{{ weatherData.summary }}</div>
+        <div class="flex items-center">
+          <UIcon name="i-heroicons-arrow-up" class="mr-1" />
+          {{ weatherData.temperatureHigh }}°F
+        </div>
+        <div class="flex items-center">
+          <UIcon name="i-heroicons-arrow-down" class="mr-1" />
+          {{ weatherData.temperatureLow }}°F
+        </div>
+
+        <div v-if="+weatherData.windSpeed > 10" class="flex items-center">
+          <UIcon name="i-wi-strong-wind" class="mr-1" />
+          {{ weatherData.windSpeed }} mph
+        </div>
+
+        <div v-if="+weatherData.precipProbability > 0" class="flex items-center">
+          <UIcon name="i-heroicons-cloud" class="mr-1" />
+          {{ weatherData.precipProbability * 100 }}%
+        </div>
       </div>
     </div>
-
-
   </div>
 </template>
 
 <script setup>
-import { toFahrenheit } from 'celsius'
+
+
 const props = defineProps({
   weatherData: Object
+});
+
+const isToday = computed(() => {
+  const today = new Date();
+  const date = new Date(props.weatherData.time * 1000);
+  return today.toDateString() === date.toDateString();
+});
+
+const isTomorrow = computed(() => {
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const date = new Date(props.weatherData.time * 1000);
+  return tomorrow.toDateString() === date.toDateString();
 });
 </script>
 

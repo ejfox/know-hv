@@ -1,197 +1,109 @@
 <template>
-  <div class="md:relative w-100 md:min-h-screen">
+  <div class="md:relative w-full">
+    <h1 class="leading-loose tracking-widest font-light text-lg md:text-4xl p-2 md:py-4 text-gray-100 text-center">
+      <img src="/svg/handdrawn__KnowHV7.svg" alt="KnowHV.com" class="w-full h-auto dark:invert md:p-8" />
+      <img src="/svg/handdrawn__HudsonValleyNY5.svg" alt="KnowHV.com" class="w-full h-auto dark:invert md:p-8" />
+    </h1>
 
-    <div ref="map" class="min-h-screen w-100 bg-gray-100" :style="{
-      pointerEvents: scrollUp ? 'none' : 'auto',
-      cursor: scrollUp ? 'grab' : 'auto',
-    }">
+    <div class="container mx-auto p-0.5">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+        <div v-for="(place, i) in places" class="bg-white dark:bg-neutral-800 rounded-lg shadow-md p-6">
+          {{ place._path }}
+          <div class="flex items-center mb-4">
+            <div class="text-2xl lg:text-6xl uppercase leading-none inline-block align-top">
+              {{ place.title }}
+            </div>
+            <!-- <img v-if="isVisited(place._path)" src="/svg/handdrawn__Checkmark.svg" 
+            class="max-h-4 w-auto dark:invert inline-block align-middle ml-4" /> -->
+
+            <UIcon name="i-heroicons-check" v-if="isVisited(place._path)" class="w-4 h-4 dark:text-green-500 ml-4" />
+          </div>
+
+          <div class="prose dark:prose-invert text-lg tracking-wide mb-4 serif font-light">
+            <ContentRenderer :value="place" :excerpt="true" />
+          </div>
+
+          <div class="flex justify-between items-center">
+            <NuxtLink :to="place._path" class="text-blue-500 hover:text-blue-700">
+              Read More
+            </NuxtLink>
+            <button @click="toggleItinerary(place)" class="text-green-500 hover:text-green-700">
+              {{ isInItinerary(place) ? 'Remove from Itinerary' : 'Add to Itinerary' }}
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- make a floating sidebar that sits on the left of the screen -->
-    <div ref="sidebar" id="sidebar"
-      class="block w-full md:w-2/5 lg:w-1/3 lg:h-screen fixed bottom-0 md:top-0 left-0 z-10 overflow-y-auto dark:bg-neutral-900/50 bg-neutral-100/50 backdrop-blur-sm max-h-96 md:max-h-screen">
+    <div class="fixed bottom-4 right-4">
+      <button @click="openItinerary" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md">
+        Itinerary ({{ itinerary.length }})
+      </button>
+    </div>
 
-
-      <div class="md:p-4">
-        <div ref="minimap" class="hidden md:visible md:w-100 md:h-96 bg-gray-100 rounded-lg shadow-lg"></div>
-
-        <h1 class="leading-loose tracking-widest font-light text-lg md:text-4xl p-2 md:py-4 text-gray-100 text-center">
-          <img src="/handdrawn__KnowHV3.svg" class="w-full h-auto dark:invert p-4 lg:p-8" />
-        </h1>
-
-        <WeatherWidget />
-
-        <!-- get the zoom, and lat/lng of the center of the map -->
-        <div v-if="libreMap">
-          {{ libreMap?.getZoom() }}
-          {{ libreMap?.getCenter() }}
-        </div>
-
-        <!-- <UCheckbox v-model="scrollUp" label="Scroll north" color="purple" class="my-4" /> -->
-
-        <UCard v-for="(place, i) in places" class="dark:text-white mb-4">
-          <template #header>
-            <span class="text-3xl uppercase">{{ place.title }}</span>
-          </template>
-          <!-- add toggle for description -->
-          <!-- <UButton @click="place.show = !place.show" color="purple" variant="solid" class="" label="Show" /> -->
-
-          <img @click="place.show = !place.show" src="/handdrawn__Show.svg"
-            class="w-1/2 h-auto dark:invert inline-block px-4" />
-
-          <!-- <UButton @click="libreMap.flyTo({ center: [place.longitude, place.latitude], zoom: 14 })" color="purple"
-            variant="outline" class="ml-2" label="Go" /> -->
-
-          <img @click="libreMap.flyTo({ center: [place.longitude, place.latitude], zoom: 14 })" src="/handdrawn__Go.svg"
-            class="w-1/2 h-auto dark:invert inline-block px-4" />
-
-          <div class="prose dark:prose-invert p-2 text-xl tracking-wide" v-show="place.show">
-            <ContentRenderer :value="place" />
-          </div>
-          <!-- <pre>{{ place }}</pre> -->
-        </UCard>
+    <div v-if="isItineraryOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+      <div class="bg-white dark:bg-neutral-800 rounded-lg shadow-md p-6 max-w-md mx-auto">
+        <h2 class="text-2xl font-bold mb-4">Your Itinerary</h2>
+        <ul>
+          <li v-for="place in itinerary" class="mb-2">
+            {{ place.title }}
+          </li>
+        </ul>
+        <button @click="closeItinerary" class="mt-4 text-blue-500 hover:text-blue-700">
+          Close
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { animate, createAnimatable, stagger } from '~/anime.esm.min.js'
-import { Map, Marker } from 'maplibre-gl';
-// @import '~maplibre-gl/dist/maplibre-gl.css';
-import 'maplibre-gl/dist/maplibre-gl.css';
-const map = ref(null);
-const libreMap = shallowRef(null);
-import * as turf from '@turf/turf';
+import { useLocalStorage } from '@vueuse/core';
 
-// query all of the locations 
-const { data } = await useAsyncData('content', () => queryContent().find())
+// Query all of the locations
+const { data } = await useAsyncData('content', () => queryContent().find());
 
-// store the hide/show of the various places in the data
-const places = ref(data.value.map((place) => ({ ...place, show: false })));
+// Store the visited pages in localStorage
+const visitedPages = useLocalStorage('visitedPages', []);
 
-import { useColorMode } from '@vueuse/core';
+// Store the itinerary in localStorage
+const itinerary = useLocalStorage('itinerary', []);
 
-const colorMode = useColorMode()
+const isItineraryOpen = ref(false);
 
-const minimap = shallowRef(null);
-const minimapLibreMap = shallowRef(null);
+const places = ref(data.value);
 
-const scrollUp = ref(false)
+function isVisited(path) {
+  return visitedPages.value.includes(path);
+}
 
+function toggleItinerary(place) {
+  if (isInItinerary(place)) {
+    itinerary.value = itinerary.value.filter(p => p._path !== place._path);
+  } else {
+    itinerary.value.push(place);
+  }
+}
+
+function isInItinerary(place) {
+  return itinerary.value.some(p => p._path === place._path);
+}
+
+function openItinerary() {
+  isItineraryOpen.value = true;
+}
+
+function closeItinerary() {
+  isItineraryOpen.value = false;
+}
+
+// Mark the current page as visited when the component is mounted
 onMounted(() => {
-  libreMap.value = new Map({
-    container: map.value,
-    style: 'https://api.maptiler.com/maps/outdoor-v2/style.json?key=9risEBlLsABm8DwIZLKG',
-    // style: colorMode === 'light' ? 'https://api.maptiler.com/maps/outdoor-v2/style.json?key=9risEBlLsABm8DwIZLKG' : 'https://api.maptiler.com/maps/toner-v2/style.json?key=9risEBlLsABm8DwIZLKG',
-    center: [-74, 41],
-    zoom: 12,
-    maxZoom: 16,
-    minZoom: 8,
-    // maxBounds: [
-    //   [-74.5, 41.2],
-    //   [-73.3, 42.2],
-    // ],
-  });
-
-  // now we need to make the bounds source for the minimap
-  libreMap.value.on('load', () => {
-    minimapLibreMap.value.addSource('bounds', {
-      type: 'geojson',
-      data: {
-        type: 'Feature',
-        geometry: {
-          type: 'Polygon',
-          coordinates: [],
-        },
-      },
-    });
-
-    // add a layer for the bounds
-    minimapLibreMap.value.addLayer({
-      id: 'bounds',
-      type: 'fill',
-      source: 'bounds',
-      paint: {
-        'fill-color': '#ff0000',
-        'fill-opacity': 0.5,
-      },
-    });
-  });
-
-  minimapLibreMap.value = new Map({
-    container: minimap.value,
-    style: 'https://api.maptiler.com/maps/streets-v2/style.json?key=9risEBlLsABm8DwIZLKG',
-    center: [-74, 41],
-    zoom: 8,
-    maxZoom: 10,
-    minZoom: 7,
-    maxBounds: [
-      [-74.5, 41.2],
-      [-73.3, 42.2],
-    ],
-  });
-
-  // keep the minimap in sync with the main map
-  libreMap.value.on('move', () => {
-    const center = libreMap.value.getCenter();
-    const zoom = libreMap.value.getZoom() * 0.7;
-    minimapLibreMap.value.setCenter(center);
-    minimapLibreMap.value.setZoom(zoom);
-
-    // we also need to draw the bounds of the main map on the minimap
-
-    // get the bounds of the main map
-    const bounds = libreMap.value.getBounds();
-
-    // convert the bounds to a geojson polygon with turf
-    const polygon = turf.bboxPolygon([bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth(), bounds.getWest()]);
-
-    // convert the polygon to a geojson feature
-    const feature = {
-      type: 'Feature',
-      geometry: polygon.geometry,
-    };
-
-    // add the feature to the minimap
-    minimapLibreMap.value.getSource('bounds').setData(feature);
-
-    // style the feature
-    minimapLibreMap.value.setPaintProperty('bounds', 'fill-color', '#ff0000');
-
-
-  });
-
-  // slowly scroll the map south
-  libreMap.value.on('load', () => {
-    const interval = useIntervalFn(() => {
-      if (!scrollUp.value) return;
-      const center = libreMap.value.getCenter();
-      libreMap.value.setCenter([center.lng, center.lat + 0.00005]);
-    }, 12);
-
-  });
-})
-
-
-// watch data, when it loads, add all the data as markers on the map
-watchEffect(() => {
-  if (!libreMap.value) return;
-  data.value.forEach((place) => {
-    console.log(place);
-    const marker = new Marker({
-      color: '#ff0000',
-    })
-      .setLngLat([place.longitude, place.latitude])
-      .addTo(libreMap.value);
-
-    marker.getElement().addEventListener('click', () => {
-      libreMap.value.flyTo({ center: [place.longitude, place.latitude], zoom: 14 });
-    });
-  });
+  const currentPath = useRoute().path;
+  if (!visitedPages.value.includes(currentPath)) {
+    visitedPages.value.push(currentPath);
+  }
 });
-
-
 </script>
 
 <style scoped></style>

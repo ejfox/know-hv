@@ -12,6 +12,8 @@ Review:
 
 As a biker, I've cruised many roads, but nothing compares to the ride up 9W towards Storm King Mountain Overlook. This journey is a motorcyclist's dream come true – it's where nature's grandeur meets the thrill of the ride.
 
+<!--more-->
+
 ![Epic Ride](https://source.unsplash.com/800x600/?motorcycle,mountain)
 
 Imagine this: you're on your bike, the engine's hum harmonizing with the wind's whisper. As you ascend Route 9W, each curve brings a new rush, a fresh perspective of the Hudson Valley's splendor. This road isn't just asphalt; it's a gateway to one of the most stunning landscapes in New York.
