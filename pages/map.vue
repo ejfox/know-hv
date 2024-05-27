@@ -16,7 +16,7 @@
         <!-- <div ref="minimap" class="hidden md:visible md:w-100 md:h-96 bg-gray-100 rounded-lg shadow-lg"></div> -->
 
         <h1 class="leading-loose tracking-widest font-light text-lg md:text-4xl p-2 md:py-4 text-gray-100 text-center">
-          <img src="/handdrawn__KnowHV3.svg" class="w-full h-auto dark:invert md:p-8" />
+          <img src="/svg/handdrawn__KnowHV3.svg" class="w-full h-auto dark:invert md:p-8" />
         </h1>
 
         <WeatherWidget />
@@ -34,14 +34,14 @@
             {{ place.title }}
           </div>
 
-          <!-- <img @click="place.show = !place.show" src="/handdrawn__More.svg"
+          <!-- <img @click="place.show = !place.show" src="/svg/handdrawn__More.svg"
             class="w-1/4 h-auto dark:invert inline-block mr-4" /> -->
 
           <!-- <UButton @click="libreMap.flyTo({ center: [place.longitude, place.latitude], zoom: 14 })" color="purple"
             variant="outline" class="ml-2" label="Go" /> -->
 
           <NuxtLink :to="place._path">
-            <img src="/handdrawn__Go.svg" class="w-1/4 h-auto dark:invert inline-block" />
+            <img src="/svg/handdrawn__Go.svg" class="w-1/4 h-auto dark:invert inline-block" />
           </NuxtLink>
 
           <div class="prose dark:prose-invert p-2 text-xl tracking-wide" v-show="place.show">
