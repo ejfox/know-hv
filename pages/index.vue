@@ -1,8 +1,11 @@
 <template>
   <div class="md:relative w-full">
-    <h1 class="leading-loose tracking-widest font-light text-lg md:text-4xl p-2 md:py-4 text-gray-100 text-center">
-      <img src="/svg/handdrawn__KnowHV7.svg" alt="KnowHV.com" class="w-full h-auto dark:invert md:p-8" />
-      <img src="/svg/handdrawn__HudsonValleyNY5.svg" alt="KnowHV.com" class="w-full h-auto dark:invert md:p-8" />
+    <h1
+      class="leading-loose tracking-widest font-light text-lg md:text-4xl p-2 md:py-4 text-gray-100 text-center flex flex-wrap">
+
+      <img src="/svg/handdrawn__HudsonValleyNY5.svg" alt="KnowHV.com" class="w-1/2 h-auto dark:invert md:p-8" />
+
+      <img src="/svg/handdrawn__KnowHV7.svg" alt="KnowHV.com" class="w-1/2 h-auto dark:invert md:p-8" />
     </h1>
 
     <div class="container mx-auto p-0.5">

@@ -4,9 +4,8 @@ date: 2024-01-27
 author: EJ Fox
 longitude: 
 latitude: 
+handtitle: /svg/handdrawn__Beacon.svg
 ---
-
-<img class="w-full h-auto inline-block dark:invert" src="/svg/handdrawn__Beacon.svg"/>
 
 <!--more-->
 
