@@ -1,33 +1,66 @@
 <template>
-  <main class="sans-serif p-4 prose text-gray-300 mx-auto">
-    <NuxtLink to="/">
-      <img src="/svg/handdrawn__back.svg" class="h-16 dark:invert inline-block px-4" />
-    </NuxtLink>
+  <ContentDoc :path="$route.path">
+    <template v-slot="{ doc }">
+      <h1 class="text-8xl p-2 pb-8" v-if="!doc.handtitle">{{ doc.title }}</h1>
+      <h1 class="text-8xl p-2 pb-8" v-else><img :src="doc.handtitle" :alt="doc.title"
+          class="w-full h-auto dark:invert p-4" />
+      </h1>
 
-    <img src="/svg/handdrawn__AddToItinerary.svg" class="h-16 dark:invert inline-block px-4" />
+      <div class="px-8 ">
+        <UButton @click="addItineraryPlace(doc)" v-if="!isInItinerary(doc)" color="green" variant="outline">
+          Add this place to Itinerary
+        </UButton>
+        <UButton @click="removeItineraryPlace(doc)" v-else color="red">
+          Remove this place from Itinerary
+        </UButton>
+      </div>
+
+
+      <div class="p-8" v-if="hasLocation(doc)">
+        <LazyLibreMap :center="[doc.longitude, doc.latitude]" :zoom="12.5" class="rounded-xl shadow-xl" />
+      </div>
+
+
+      <main class="prose dark:prose-invert text-xl leading-8 tracking-wide ml-4 md:ml-16 lg:ml-24">
 
 
 
 
+        <section class="font-serif">
+          <ContentRenderer :value="doc" />
+        </section>
+      </main>
 
-    <ContentDoc />
-
-
-  </main>
+    </template>
+    <template #not-found>
+      <h1>Document not found</h1>
+    </template>
+  </ContentDoc>
 </template>
-
 <script setup>
 
-</script>
-
-<style>
-hr {
-  border: 0;
-  height: 1px;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  background: #333;
-  background-image: linear-gradient(to right, #ccc, #333, #ccc);
-  border-radius: 5px;
+// check for both latitude and longitude
+// and make sure they have a value
+const hasLocation = (doc) => {
+  if (!doc.latitude) return false;
+  if (!doc.longitude) return false;
+  // make sure they're not empty strings
+  if (doc.latitude === '') return false;
+  if (doc.longitude === '') return false;
+  return true;
 }
-</style>
+
+const itinerary = useLocalStorage('itinerary', []);
+
+function removeItineraryPlace(place) {
+  itinerary.value = itinerary.value.filter(p => p._path !== place._path);
+}
+
+function isInItinerary(place) {
+  return itinerary.value.some(p => p._path === place._path);
+}
+
+function addItineraryPlace(place) {
+  itinerary.value = [...itinerary.value, place];
+}
+</script>

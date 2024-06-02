@@ -3,15 +3,22 @@
     <h1
       class="leading-loose tracking-widest font-light text-lg md:text-4xl p-2 md:py-4 text-gray-100 text-center flex flex-wrap">
 
-      <img src="/svg/handdrawn__HudsonValleyNY5.svg" alt="KnowHV.com" class="w-1/2 h-auto dark:invert md:p-8" />
+      <img src="/svg/handdrawn__HudsonValleyNY5.svg" alt="KnowHV.com" class="w-1/2 h-auto dark:invert p-2 md:p-8" />
 
-      <img src="/svg/handdrawn__KnowHV7.svg" alt="KnowHV.com" class="w-1/2 h-auto dark:invert md:p-8" />
+      <img src="/svg/handdrawn__KnowHV7.svg" alt="KnowHV.com" class="w-1/2 h-auto dark:invert p-2 md:p-8" />
     </h1>
 
+    <section class="p-8">
+      <LibreMap class="rounded-xl shadow-xl" />
+
+    </section>
+
     <div class="container mx-auto p-0.5">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-        <div v-for="(place, i) in places" class="bg-white dark:bg-neutral-800 rounded-lg shadow-md p-6">
-          {{ place._path }}
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
+        <div v-for="(place, i) in places" class=" rounded-lg p-4 my-16 pr-8 lg:pr-16" :key="place._path">
+          <span class="opacity-20 tracking-widest">
+            {{ place._path }}
+          </span>
           <div class="flex items-center mb-4">
             <div class="text-2xl lg:text-6xl uppercase leading-none inline-block align-top">
               {{ place.title }}
@@ -22,15 +29,16 @@
             <UIcon name="i-heroicons-check" v-if="isVisited(place._path)" class="w-4 h-4 dark:text-green-500 ml-4" />
           </div>
 
-          <div class="prose dark:prose-invert text-lg tracking-wide mb-4 serif font-light">
+          <div class="prose dark:prose-invert text-lg tracking-wide mb-4 font-light font-serif text-justify">
             <ContentRenderer :value="place" :excerpt="true" />
           </div>
 
           <div class="flex justify-between items-center">
-            <NuxtLink :to="place._path" class="text-blue-500 hover:text-blue-700">
+            <NuxtLink :to="place._path" class="text-blue-500 hover:text-blue-700
+            p-2 bg-slate-800 dark:bg-slate200 rounded-lg shadow-md px-8">
               Read More
             </NuxtLink>
-            <button @click="toggleItinerary(place)" class="text-green-500 hover:text-green-700">
+            <button @click=" toggleItinerary(place)" class="text-green-500 hover:text-green-700">
               {{ isInItinerary(place) ? 'Remove from Itinerary' : 'Add to Itinerary' }}
             </button>
           </div>
