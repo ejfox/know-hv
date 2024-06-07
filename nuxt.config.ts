@@ -29,7 +29,8 @@ export default defineNuxtConfig({
           Gelasio: [400, 500, 600, 700]
         }
       }
-    ]
+    ],
+    '@unlok-co/nuxt-stripe'
   ],
   // content: {
   //   documentDriven: true
@@ -41,6 +42,24 @@ export default defineNuxtConfig({
   //     exclude: ['/'],
   //   }
   // },
+  stripe: {
+    // Server
+    server: {
+      // key: "sk_test_123",
+      key: process.env.STRIPE_SECRET_KEY,
+      options: {
+        // your api options override for stripe server side
+        // https://github.com/stripe/stripe-node?tab=readme-ov-file#configuration
+      }
+      // CLIENT
+    },
+    client: {
+      // key: "pk_test_123",
+      key: process.env.STRIPE_PUBLISHABLE_KEY,
+      // your api options override for stripe client side https://stripe.com/docs/js/initializing#init_stripe_js-options
+      options: {}
+    }
+  },
   runtimeConfig: {
     // add the openai api key to the runtime config
     WEATHER_KEY: process.env.WEATHER_KEY,
