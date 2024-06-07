@@ -9,7 +9,7 @@
 
     <!-- make a floating sidebar that sits on the left of the screen -->
     <div ref="sidebar" id="sidebar"
-      class="block w-full md:w-2/5 lg:w-1/3 lg:h-screen fixed bottom-0 md:top-0 left-0 z-10 overflow-y-auto dark:bg-neutral-950/80 bg-neutral-100/80 backdrop-blur-sm max-h-96 md:max-h-screen p-2">
+      class="block w-full md:w-2/5 lg:w-1/3 lg:h-screen fixed bottom-0 md:top-0 left-0 overflow-y-auto dark:bg-neutral-950/80 bg-neutral-100/80 backdrop-blur-sm max-h-96 md:max-h-screen p-2">
 
 
       <div class="">

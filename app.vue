@@ -1,6 +1,6 @@
 <template>
   <div>
-    <UHorizontalNavigation :links="nav" class="font-sans w-full md:px-10 lg:px-20 py-2 md:py-4 lg:py-6" />
+    <UHorizontalNavigation :links="nav" class="font-sans w-full md:px-10 lg:px-20 py-2 md:py-4 lg:py-6 z-50" />
     <NuxtPage />
   </div>
 </template>
@@ -30,11 +30,16 @@ const nav = computed(() => {
     icon: 'i-material-symbols-hiking-rounded'
   },
   {
-    label: 'Itinerary',
+    label: 'Your Itinerary',
     badge: itineraryCount.value,
     icon: 'i-material-symbols-list-alt-rounded',
     to: '/itinerary'
-  }
+  },
+  {
+    label: 'Stickers',
+    icon: 'i-solar-sticker-circle-bold',
+    to: '/stickers'
+  },
   ]
 })
 </script>

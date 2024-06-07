@@ -1,16 +1,15 @@
 <template>
-  <div class="p-24 prose dark:prose-invert text-3xl">
-    <h1>Adventure Builder</h1>
+  <div class="p-24 text-3xl space-y-8 lg:space-y-32 max-w-screen-md mx-auto">
 
-    <img @click="place.show = !place.show" src="/svg/handdrawn__PlanYourAdventure.svg"
+    <img @click="place.show = !place.show" src="/svg/handdrawn__PlanYourAdventure.svg" alt="Plan your adventure"
       class="w-full h-auto inline-block px-4 dark:invert" />
 
 
-    <div class="fixed top-4 right-4 z-50 pr-4">
+    <div class="fixed top-4 right-4 z-50 pr-4 bg-black/80 rounded-md">
       <UVerticalNavigation :links="navigation" />
     </div>
 
-    <div id="config">
+    <div id="config" class="space-y-8 lg:space-y-32">
       <div class="config-section">
         <h2>How will you be traveling?</h2>
         <USelectMenu v-model="transportation" :options="transportationOptions">
@@ -32,8 +31,14 @@
         <h2>How much time do you have?</h2>
         <URange v-model="timeBudget" :options="timeBudgetOptions" size="2xl" :min="timeBudgetOptions[0]" :step="1"
           :max="timeBudgetOptions[timeBudgetOptions.length - 1]" />
+
+        <!-- label -->
+        <span class="text-gray-100 bg-gray-900 dark:text-gray-900 dark:bg-gray-100 px-2 rounded-lg">{{
+      animatedState.timeBudget }}
+          hours</span>
+
         <!-- shortcut buttons for the timeBudgetOptions -->
-        <!-- <UButtonGroup class="mr-2">
+        <UButtonGroup class="mr-2">
           <template #default>
             <UButton v-for="option in timeBudgetOptions" :key="option" :value="option"
               :class="+option == +animatedState.timeBudget.toFixed(0) ? 'font-bold' : 'opacity-50 transition-all'"
@@ -41,12 +46,9 @@
               {{ option }}
             </UButton>
           </template>
-        </UButtonGroup> -->
+        </UButtonGroup>
 
-        <!-- label -->
-        <span class="text-gray-100 bg-gray-900 dark:text-gray-900 dark:bg-gray-100 px-2 rounded-lg">{{
-      animatedState.timeBudget.toFixed(0) }}
-          hours</span>
+
 
 
       </div>
@@ -176,54 +178,57 @@ const timeBudget = ref(4);
 const isFormValid = computed(() => transportation.value && timeBudget.value);
 
 
-
-const animatedState = ref({
+const animatedState = reactive({
   transportation: false,
-  timeBudget: false,
+  timeBudget: 2,
   accommodation: false,
   interests: false,
 });
 
-const state = createAnimatable(animatedState.value, {
-  timeBudget: 1000
-});
-
 watch(timeBudget, (newValue, oldValue) => {
   if (newValue !== oldValue) {
-    state.timeBudget.to(newValue, 1000);
+    if (!animatedState) return;
+    if (!animatedState.timeBudget) return;
+    animatedState.timeBudget = newValue;
   }
 }, { immediate: true })
 
 const generateItinerary = () => {
   console.log("Generating itinerary...");
 };
-
-const navigation = [{
-  label: 'Transportation Method',
-  icon: 'i-ic-outline-directions-car',
-  id: 'transportation',
-}, {
-  label: 'Starting Location',
-  icon: 'i-material-symbols-home-pin',
-  id: 'starting-location',
-}, {
-  label: 'Time Budget',
-  icon: 'i-material-symbols-more-time-rounded',
-  id: 'time-budget',
-  badge: timeBudget
-}, {
-  label: 'Interests',
-  icon: 'i-iconoir-binocular',
-  id: 'interests',
-}, {
-  label: 'Accommodation',
-  icon: 'i-solar-buildings-bold',
-  id: 'accommodation',
-}, {
-  label: 'Generate Itinerary',
-  icon: 'i-ic-baseline-recommend',
-  id: 'generate-itinerary',
-}];
+const navigation = computed(() => [
+  {
+    label: 'Transportation Method',
+    icon: 'i-ic-outline-directions-car',
+    id: 'transportation',
+  },
+  {
+    label: 'Starting Location',
+    icon: 'i-material-symbols-home-pin',
+    id: 'starting-location',
+  },
+  {
+    label: 'Time Budget',
+    icon: 'i-material-symbols-more-time-rounded',
+    id: 'time-budget',
+    badge: timeBudget.value,
+  },
+  {
+    label: 'Interests',
+    icon: 'i-iconoir-binocular',
+    id: 'interests',
+  },
+  {
+    label: 'Accommodation',
+    icon: 'i-solar-buildings-bold',
+    id: 'accommodation',
+  },
+  {
+    label: 'Generate Itinerary',
+    icon: 'i-ic-baseline-recommend',
+    id: 'generate-itinerary',
+  },
+]);
 
 
 </script>
