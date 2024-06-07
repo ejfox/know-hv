@@ -19,11 +19,6 @@ const nav = computed(() => {
     icon: 'i-material-symbols-home-rounded'
   },
   {
-    label: 'Map',
-    icon: 'i-material-symbols-map-rounded',
-    to: '/map'
-  },
-  {
 
     label: 'Adventure Designer',
     to: '/adventure',
@@ -39,6 +34,11 @@ const nav = computed(() => {
     label: 'Stickers',
     icon: 'i-solar-sticker-circle-bold',
     to: '/stickers'
+  },
+  {
+    label: 'Map',
+    icon: 'i-material-symbols-map-rounded',
+    to: '/map'
   },
   ]
 })
