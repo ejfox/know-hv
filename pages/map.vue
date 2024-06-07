@@ -1,5 +1,7 @@
 <template>
   <div class="md:relative w-100 md:min-h-screen">
+    <UAlert icon="i-heroicons-command-line" color="primary" variant="solid" title="Heads up!"
+      description="This page is under construction, and may not work as expected. Please check back later." />
 
     <div ref="map" class="min-h-screen w-100 bg-gray-100" :style="{
       pointerEvents: scrollUp ? 'none' : 'auto',

@@ -4,6 +4,9 @@
     <img @click="place.show = !place.show" src="/svg/handdrawn__PlanYourAdventure.svg" alt="Plan your adventure"
       class="w-full h-auto inline-block px-4 dark:invert" />
 
+    <UAlert icon="i-heroicons-command-line" color="primary" variant="solid" title="Heads up!"
+      description="This page is under construction, and may not work as expected. Please check back later." />
+
 
     <div class="fixed top-4 right-4 z-50 pr-4 bg-black/80 rounded-md">
       <UVerticalNavigation :links="navigation" />

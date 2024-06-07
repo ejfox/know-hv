@@ -6,6 +6,9 @@
           class="w-full h-auto dark:invert p-4" />
       </h1>
 
+      <UAlert icon="i-carbon-construction" color="primary" variant="solid" title="Heads up!"
+        description="This content is an AI-generated example, and will be replaced later." />
+
       <div class="px-8 ">
         <UButton @click="addItineraryPlace(doc)" v-if="!isInItinerary(doc)" color="green" variant="outline">
           Add this place to Itinerary
