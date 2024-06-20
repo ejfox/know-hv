@@ -1,5 +1,5 @@
 import { defineEventHandler } from 'h3'
-import { useServerStripe } from '#stripe/server'
+// import { useServerStripe } from '#stripe/server'
 
 export default defineEventHandler(async (event) => {
   const stripe = await useServerStripe(event)
