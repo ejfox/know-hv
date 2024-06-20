@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "nuxt generate"
   publish = "dist"
 [build.environment]
   NODE_OPTIONS = "--max-old-space-size=8192"
