@@ -125,7 +125,7 @@ const transportationOptions = [{
 // time budget in hours
 const timeBudgetOptions = [2, 4, 8, 12, 24, 48, 72];
 // const interests = ["Outdoor Activities", "Food & Drink", "Sightseeing", "Cultural Attractions", "Shopping"];
-const interests = [
+const interests = ref([
   {
     id: 'hiking',
     label: 'Hiking',
@@ -151,7 +151,7 @@ const interests = [
     id: 'shopping',
     label: 'Shopping',
     icon: 'i-heroicons-shopping-bag'
-  }];
+  }])
 // const accommodationOptions = ["Camping", "Hotel", "B&B", "Airbnb"];
 const accommodationOptions = [{
   id: 'camping',
