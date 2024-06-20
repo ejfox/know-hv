@@ -13,6 +13,11 @@ export default defineNuxtConfig({
     }
   },
   // ssr: false, // for netlify deploy
+  nitro: {
+    prerender: {
+      ignore: ['/login', '/confirm']
+    }
+  },
   devtools: { enabled: true },
   modules: [
     // '@nuxtjs/supabase',
