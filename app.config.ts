@@ -1,5 +1,6 @@
 export default defineAppConfig({
   ui: {
+    primary: 'sapgreen',
     icons: {
       dynamic: true
     },

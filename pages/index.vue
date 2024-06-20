@@ -26,7 +26,7 @@
             <!-- <img v-if="isVisited(place._path)" src="/svg/handdrawn__Checkmark.svg" 
             class="max-h-4 w-auto dark:invert inline-block align-middle ml-4" /> -->
 
-            <UIcon name="i-heroicons-check" v-if="isVisited(place._path)" class="w-4 h-4 dark:text-green-500 ml-4" />
+            <UIcon name="i-heroicons-check" v-if="isVisited(place._path)" class="w-4 h-4 dark:text-primary-500 ml-4" />
           </div>
 
           <div class="prose dark:prose-invert text-lg tracking-wide mb-4 font-light font-serif text-justify">
@@ -34,11 +34,11 @@
           </div>
 
           <div class="flex justify-between items-center">
-            <NuxtLink :to="place._path" class="text-blue-500 hover:text-blue-700
-            p-2 bg-slate-800 dark:bg-slate200 rounded-lg shadow-md px-8">
+            <NuxtLink :to="place._path" class="text-primary-500 hover:text-primary-700
+            p-2 bg-slate-800 dark:bg-primary-950 rounded-lg shadow-md px-8">
               Read More
             </NuxtLink>
-            <button @click=" toggleItinerary(place)" class="text-green-500 hover:text-green-700">
+            <button @click=" toggleItinerary(place)" class="text-primary-500 hover:text-primary-700">
               {{ isInItinerary(place) ? 'Remove from Itinerary' : 'Add to Itinerary' }}
             </button>
           </div>
@@ -47,7 +47,7 @@
     </div>
 
     <div class="fixed bottom-4 right-4">
-      <button @click="openItinerary" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md">
+      <button @click="openItinerary" class="bg-primary-500 text-white px-4 py-2 rounded-lg shadow-md">
         Itinerary ({{ itinerary.length }})
       </button>
     </div>
@@ -60,7 +60,7 @@
             {{ place.title }}
           </li>
         </ul>
-        <button @click="closeItinerary" class="mt-4 text-blue-500 hover:text-blue-700">
+        <button @click="closeItinerary" class="mt-4 text-primary-500 hover:text-primary-700">
           Close
         </button>
       </div>

@@ -1,16 +1,18 @@
 <template>
   <ContentDoc :path="$route.path">
     <template v-slot="{ doc }">
-      <h1 class="text-8xl p-2 pb-8" v-if="!doc.handtitle">{{ doc.title }}</h1>
-      <h1 class="text-8xl p-2 pb-8" v-else><img :src="doc.handtitle" :alt="doc.title"
+      <h1 class="text-8xl p-2 lg:p-16 pb-8" v-if="!doc.handtitle">{{ doc.title }}</h1>
+      <h1 class="text-8xl p-2 lg:p-16 pb-8" v-else><img :src="doc.handtitle" :alt="doc.title"
           class="w-full h-auto dark:invert p-4" />
       </h1>
+      <div class="p-4 lg:p-16">
 
-      <UAlert icon="i-carbon-construction" color="primary" variant="solid" title="Heads up!"
-        description="This content is an AI-generated example, and will be replaced later." />
+        <UAlert icon="i-carbon-construction" color="primary" variant="solid" title="Heads up!"
+          description="This content is an AI-generated example, and will be replaced later." />
+      </div>
 
       <div class="px-8 ">
-        <UButton @click="addItineraryPlace(doc)" v-if="!isInItinerary(doc)" color="green" variant="outline">
+        <UButton @click="addItineraryPlace(doc)" v-if="!isInItinerary(doc)" color="primary" variant="outline">
           Add this place to Itinerary
         </UButton>
         <UButton @click="removeItineraryPlace(doc)" v-else color="red">
